@@ -18,7 +18,7 @@
 <%--./L01servlet.do ⇒ localhost:8080/L01_web_app_war/L01_servlet.do/--%>
 <a href="./L01servlet.do">서블릿 생성 ~_~</a> <!-- / 앞에 . 붙이세오!--> <!--do는 동적리소스-->
 <hr>
-<h2>파라미더 요청처리</h2>
+<h2>파라미터 요청처리</h2>
 <a href="./L02request.do?a=10&b=20">요청처리?a=10 & b=20 (쿼리스트링)</a> <!--물음표를 쿼리스트링이라고 함. 질의하는 문자열. 동적리소스에만 쓸 수 잇음-->
 <br>
 <a href="./L02request.do?a=99&b=77">요청처리?a=99 & b=77 (쿼리스트링)</a>
@@ -75,6 +75,30 @@
 <p>
     <a href="l07users.do">유저리스트</a>
 </p>
+
+<hr>
+<h2>Redirect</h2>
+<p>→ 서버 내부에서 다른 페이지로 이동 (코드 302)</p>
+<p><a href="l08redirect.do">리다이렉트</a></p>
+<p><a href="l09login_form.jsp">로그인폼</a></p>
+<%
+String loginResultStr=request.getParameter("loginResult");
+//null이거나 오타가 있거나 ⇒ 오류동반~~~ so, try-catch 쓰는게 좋습니당!
+    try {
+        boolean loginResult=Boolean.parseBoolean(loginResultStr);
+        if (loginResult){
+            //out.println("<script>alert('로그인 성공')</script>"); //이렇게 해도 되고, 밑에처럼 해도 됨.
+        %>
+<script>
+    alert("로그인 성공")
+</script>
+        <% //새로고침 할 때 마다 알림창이 뜸. 좋은 방법은 아님 ^^;
+        }
+    } catch (Exception e){
+        e.printStackTrace(); //오류 무시할게
+    }
+%>
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
