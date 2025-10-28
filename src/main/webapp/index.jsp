@@ -99,6 +99,15 @@ String loginResultStr=request.getParameter("loginResult");
     }
 %>
 
+<hr>
+<h2>브라우저에 남기는 데이터 = 쿠키</h2>
+<p>서버의 응답으로 브라우저에 저장되며, 브라우저가 서버에 요청할 때 마다 저장됨.</p>
+<p>
+    <a href="l10cookie.do">쿠키 만들기</a>
+</p>
+<p><a href="l10get_cookie.do">쿠키 가져오기</a></p>
+<p><a href="l11cookie_home.jsp">쿠키 팝업 홈</a></p>
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
