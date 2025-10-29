@@ -17,11 +17,11 @@ public class L13AddSession extends HttpServlet {
         //서버가 세션객체를 저장하고 있다가
         //세션객체에 정의된 id와 동일한 id를 쿠키로 갖는 브라우저가 접속하면!!
         //요청객체에 세션을 포함시켜 서블릿을 동작
-        HttpSession session=req.getSession();
+        HttpSession session=req.getSession(); //서버에 저장되어 있는 동적리소스 호출할게~ //객체 자체를 가져오는게 아니라 객체의 주소를 가져올게 ^-^
         session.setAttribute("userId","smu1234"); //forward req.setAttribute(key,value);
         session.setAttribute("userPw",7777);
         //서버에 저장된 세션객체에 정보를 바로 추가!!
-        //session : 브라우저 종료 JSESSIONID 쿠키가 사라져서  해당세션을 찾을 수 없음
+        //session : 브라우저 종료 JSESSIONID 쿠키가 사라져서 해당세션을 찾을 수 없음
         //session : 재접속이 30분간 없으면 만료시간이 다되어 서버내부에서 삭제
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out=resp.getWriter();

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로컬 저장소</title>
+</head>
+<body>
+    <h1>로컬 저장소 저장 및 조회</h1>
+    <p>비동기동작(AJAX?)을 위해 많이 사용됨(대표적 예시: 장바구니)</p>
+<!--동기식: 화면과 url이 같다-->
+<!--비동기식: url은 그대로고, 화면은 바뀐다-->
+    <hr>
+    <h2>유저 정보 로컬스토리지 저장</h2>
+    <form action="#" name="userForm">
+        <p>
+            <label> ID:
+                <input type="text" name="id" value="a1234">
+            </label>
+        </p>
+        <p><label> 이름: <input type="text" name="name" value="김나나"></label></p>
+        <p><label> 나이: <input type="text" name="age" value="25"></label></p>
+        <p>
+            <button type="submit">저장</button>
+        </p>
+    </form>
+    <hr>
+    <h2>저장된 유저 조회 → <button id="loadUsers" type="button">로컬 유저리스트 조회</button></h2>
+    <div id="usersContainer">
+
+    </div>
+    <script>
+        const loadUsers=document.getElementById("loadUsers");
+        const usersContainer=document.getElementById("usersContainer");
+        loadUsers.addEventListener("click",()=>{
+            let users=localStorage.getItem("users");
+            if (!users){
+                usersContainer.innerText="정보없음";
+                return;
+            }
+            users=JSON.parse(users);
+            usersContainer.innerHTML=""; //호출 전에 내용 다 지우기
+            users.forEach((u)=>{
+                let p=document.createElement("p");
+                p.append(JSON.stringify(u));
+                usersContainer.append(p);
+            })
+        })
+    </script>
+
+
+    <script>
+        const userForm=document.forms["userForm"];
+
+        function User(id,name,age) {
+            this.id=id;
+            this.name=name;
+            this.age=age;
+        } //타입 만들어봄. 타입조건: 대문자이름+this
+
+        userForm.onsubmit=(e)=>{
+            e.preventDefault();
+            let id=userForm.id.value;
+            let name=userForm.name.value;
+            let age=Number(userForm.age.value);
+            if(!id || !name || Number.isNaN(age)){ // = if (id && name && Number.isNaN(age))
+                alert("올바르게 입력하세요.")
+                return;
+            }
+            console.log(id,name,age);
+            //입력이 끝나면 저장해야됴
+            //users=[{id:'a1234', name:'김나나', age:25},{...},{...},...]
+//            const obj={id:id, name:name, age:age};
+            const user=new User(id,name,age);
+            console.log(user);
+//            localStorage.setItem("users",user);
+            let existUsers=localStorage.getItem("users"); //그래서 기존 데이터를 가져온다~
+            if (existUsers==null){ //→ 최초등록!  //get하려면 빈 배열을 만들어조야해
+                existUsers="[]";
+            }
+            existUsers=JSON.parse(existUsers); //나 자신을 파싱할게
+            //[], {[], []}
+            //이미 저장되어있는 데이터가 있다면, 바꿀게
+            //저장되어 있지 않다면, 생성할게
+            /*for (let u of existUsers){
+                if (u.id===id){ //아이디가 이미 있으면
+
+                }
+            }*/ //for문으로는 index를 알 수가 없어서 삭제 못해 ㅎ.ㅎ
+            existUsers.forEach((u,i,arr)=>{
+                if (u.id===id){
+                    existUsers.splice(i,1);
+                    console.log(i+"번째 삭제");
+                }
+            })
+
+
+
+            existUsers.push(user); //user를 밀어넣을게~
+            console.log(existUsers);
+            localStorage.setItem("users",JSON.stringify(existUsers));
+
+            //localStorage.setItem("users",JSON.stringify(user)); //계속 set만 하면 덮어씌우기 밖에 안 함..
+        }
+
+
+
+        localStorage.setItem("name","연아"); //저장
+        let name=localStorage.getItem("name"); //호출
+        console.log(name);
+
+
+    </script>
+</body>
+</html>

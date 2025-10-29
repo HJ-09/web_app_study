@@ -26,7 +26,7 @@
             }
             //js는 equals가 존재하지 않음. 기본형만 비교가능 문자열은 자바와 달리 기본형
             if (jsHidePopupCookie==null || jsHidePopupCookie !== "1"){
-                window.open("./l12popup.html","js_popup","width=500,height=600,left=100,top=100"); //(url,[js에서 사용할 팝업창이름],[옵션:크기,위치])
+                window.open("./l12popup.html","js_popup","width=500,height=600,left=100,top=100"); //(url,[js에서 사용할 팝업창이름],[옵션:크기,위치,..])
             }
         }
 
@@ -36,10 +36,10 @@
         <%--    const now=new Date();--%>
         <%--    //1000*60 :60초--%>
         <%--    console.log(now.toUTCString())--%>
-        <%--    now.setTime(now.getTime()+(1000*60*60));--%>
+        <%--    now.setTime(now.getTime()+(1000*60*60));--%> //JS는 밀리초 포함이라서 *1000 필요
         <%--    console.log(now.toUTCString());--%>
         <%--    document.cookie =--%>
-        <%--        `js_hide_popup=1;expires=${now.toUTCString()};max-age=${60*60*24}`;--%>
+        <%--        `js_hide_popup=1;expires=${now.toUTCString()};max-age=${60*60*24}`;--%> //max-age는 밀리초 포함 x
         <%--}--%>
         //addCookie();
     </script>

@@ -28,8 +28,7 @@
             <h2>광고입니다.</h2>
             <a href="l11add_cookie.do">일주일간 보지 않기</a>
         `)
-
-
+        <%}%>
     </script>
 </body>
 </html>
