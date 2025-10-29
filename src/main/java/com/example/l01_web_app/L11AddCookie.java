@@ -24,7 +24,8 @@ public class L11AddCookie extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
         out.println("일주일간 안 보기 쿠키생성 완료");
-
+        //창을 종료 ⇒ script
+        out.println("<script> setTimeout(()=>{ window.close(); }, 1000)</script>");
 
 
     }
