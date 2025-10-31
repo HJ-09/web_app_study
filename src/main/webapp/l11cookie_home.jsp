@@ -6,10 +6,11 @@
 </head>
 <body>
     <h1>쿠키로 하루동안 뜨지 않는 팝업 만들기</h1>
+    <p>'일주일간 보지 않기'로 생성한 hidePopup이 없을 때 팝업창이 뜬다.</p>
     <%
         //서버에서  html 을 렌더링 중에 발생하는 쿠키 검색
         Cookie[] cookies=request.getCookies();
-        Cookie hidePopup=null;
+        Cookie hidePopup=null; //있는지 없는지 모르니까 null
         if(cookies!=null){
             for(Cookie c: cookies){
                 if(c.getName().equals("hidePopup")){
@@ -19,7 +20,7 @@
             }
         }
         //hidePopup null 일수도 있고 아닐수도 있다.
-        if(hidePopup==null || !hidePopup.getValue().equals("1")){
+        if(hidePopup==null || !hidePopup.getValue().equals("1")){ //!hidePopup.getValue().equals("1") → 생략해도 괜츈
     %>
     <script>
         //팝업창: 브라우저가 다른 브라우저 창을 작게 띄우는 것을 말함

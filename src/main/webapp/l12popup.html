@@ -16,6 +16,8 @@
         const addCookie=(maxAge)=>{
             //expireSec=>60*60
             //key=value;expires=date.toUTCString();max-age=60*60*24.;path=/
+
+            //파기시간 만들게 ~ ~
             const now=new Date();
             now.setTime(now.getTime()+(1000*maxAge));
             document.cookie="jsHidePopup=1;expires="+now.toUTCString()+";max-age="+maxAge;
